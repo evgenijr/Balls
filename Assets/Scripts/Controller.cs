@@ -1,18 +1,44 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
+using UnityEngine.UI;
 
-public class Controller : MonoBehaviour
+public class Controller : Observer
 {
-    // Start is called before the first frame update
-    void Start()
+    public SpawnerModel spawner;
+    public PlayerModel player;
+    public VIew view;
+
+    public Controller()
     {
-        
+        spawner = new SpawnerModel();
+        player = new PlayerModel();
+        view = new VIew();
+    }
+    public void Update()
+    {
+        if (view.shootClicked)
+        {
+            _shootClicked();
+        }
+    }
+    public override void OnNotify(Notifications notification)
+    {
+        switch (notification)
+        {
+            case Notifications.PLATFORM_HITED:
+                {
+                    _hit();
+                    break;
+                }
+
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void _shootClicked()
     {
-        
+        spawner.SpawnNewBullet();
+    }
+    private void _hit()
+    {
+        view.SetNewScore(player.Hit());
     }
 }

@@ -1,18 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnerModel : MonoBehaviour
+public class SpawnerModel : Observer
 {
-    // Start is called before the first frame update
-    void Start()
+    public Spawner spawner;
+
+    public void SpawnNewBullet()
     {
-        
+        _spawnNewBullet();
+    }
+    public override void OnNotify(Notifications notification)
+    {
+        switch (notification)
+        {
+            case Notifications.PLATFORM_HITED:
+                {
+                    _spawnNewBullet();
+                    break;
+                }
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void _spawnNewBullet()
     {
-        
+        spawner.Spawn();
     }
 }

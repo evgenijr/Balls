@@ -1,18 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
-public class Subject : MonoBehaviour
+public static class Subject
 {
-    // Start is called before the first frame update
-    void Start()
+    private static List<Observer>  observers = new List<Observer>();
+    public static void Notify(Notifications notification)
     {
-        
+        for (int i = 0; i < observers.Count; i++)
+        {
+            observers[i].OnNotify(notification);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void AddObserver(Observer observer)
     {
-        
+        observers.Add(observer);
+    }
+
+    public static void RemoveObserver(Observer observer)
+    {
     }
 }
