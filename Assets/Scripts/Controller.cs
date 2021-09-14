@@ -1,18 +1,13 @@
-using System;
-using UnityEngine.UI;
-
 public class Controller : Observer
 {
-    public Platforms PlatformModel;
+    public TargetModel TargetModel;
     public SpawnerModel SpawnerModel;
-    public VIew View;
-    
-    //private PlayerModel PlayerModel;
+    public View View;
 
+    private bool isLose = false;
     public Controller()
     {
         SpawnerModel = new SpawnerModel();
-        //PlayerModel = new PlayerModel();
         Subject.AddObserver(this);
     }
     public void Update()
@@ -26,20 +21,31 @@ public class Controller : Observer
     {
         switch (notification)
         {
-            case Notifications.PLATFORM_HITED:
+            case Notifications.TERGE_HITED:
                 {
                     _hit();
                     break;
                 }
-
+            case Notifications.LOST_GAME:
+                {
+                    _lose();
+                    break;
+                }
         }
     }
     private void _shootClicked()
     {
+        if(!isLose)
         SpawnerModel.SpawnNewBullet();
+    }
+    private void _lose()
+    {
+        isLose = true;
+        TargetModel.lose();
+        SpawnerModel.lose();
     }
     private void _hit()
     {
-        View.SetNewScore(PlatformModel.score);
+        View.SetNewScore(TargetModel.score);
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnerModel : Observer
+public class SpawnerModel
 {
     public Spawner spawner;
 
@@ -8,16 +8,9 @@ public class SpawnerModel : Observer
     {
         _spawnNewBullet();
     }
-    public override void OnNotify(Notifications notification)
+    public void lose()
     {
-        switch (notification)
-        {
-            case Notifications.PLATFORM_HITED:
-                {
-                    _spawnNewBullet();
-                    break;
-                }
-        }
+        spawner.gameObject.SetActive(false);
     }
 
     private void _spawnNewBullet()

@@ -9,13 +9,12 @@ public static class Subject
             observers[i].OnNotify(notification);
         }
     }
-
     public static void AddObserver(Observer observer)
     {
         observers.Add(observer);
     }
-
     public static void RemoveObserver(Observer observer)
     {
+        observers.Remove(observer);
     }
 }

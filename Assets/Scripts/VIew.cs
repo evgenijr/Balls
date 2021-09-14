@@ -1,7 +1,7 @@
 using UnityEngine.UI;
 using UnityEngine;
 
-public class VIew : MonoBehaviour
+public class View : MonoBehaviour
 {
     [SerializeField]private Text ScoreText;
     public bool shootClicked { get; private set; }
@@ -19,14 +19,12 @@ public class VIew : MonoBehaviour
     {
         ScoreText.text = val.ToString();
     }
-    //-------------
+    //-----------------
     private void LateUpdate()
     {
         shootClicked = false;
         pauseClicked = false;
     }
-
-
     private void _shootClick()
     {
         shootClicked = true;

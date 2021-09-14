@@ -3,18 +3,17 @@ using UnityEngine.UI;
 
 public class Manager : MonoBehaviour
 {
-    [SerializeField] private VIew View;
+    [SerializeField] private View View;
     [SerializeField] private GameObject Spawner;
     [SerializeField] private Text ScoreText;
-    [SerializeField] private Platforms Platform;
+    [SerializeField] private TargetModel Platform;
 
     private Controller controller;
-
     private void Awake()
     {
         controller = new Controller();
         controller.View = View;
-        controller.PlatformModel = Platform;
+        controller.TargetModel = Platform;
         controller.SpawnerModel.spawner = Spawner.GetComponent<Spawner>();
     }
     private void Update()

@@ -1,4 +1,5 @@
 public enum Notifications{
     SHOOT_CLICK,
-    PLATFORM_HITED,
+    TERGE_HITED,
+    LOST_GAME
 }
