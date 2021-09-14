@@ -3,9 +3,12 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]private float Speed;
 
+    private Collider _col;
     private Rigidbody _rb;
+    private bool hited;
     private void Awake()
     {
+        _col= GetComponent<Collider>();
         _rb = GetComponent<Rigidbody>();
         _rb.velocity = Vector3.up * Speed;
     }
@@ -16,10 +19,11 @@ public class Bullet : MonoBehaviour
         {
             if (other.TryGetComponent(out TargetModel plat))
             {
-                Subject.Notify(Notifications.TERGE_HITED);
-                transform.SetParent(other.transform);
-                plat.PlusScore(1);
+                Subject.Notify(Notifications.TARGET_HITED);
+                Physics.IgnoreCollision(_col, other);
+                hited = true;
                 enabled = false;
+                transform.SetParent(other.transform);
             }
             else return;
         }
@@ -32,6 +36,7 @@ public class Bullet : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if(!hited)
         _rb.MovePosition(transform.position + new Vector3(0, 1, 0) * Speed);
     }
 }

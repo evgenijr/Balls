@@ -21,7 +21,7 @@ public class Controller : Observer
     {
         switch (notification)
         {
-            case Notifications.TERGE_HITED:
+            case Notifications.TARGET_HITED:
                 {
                     _hit();
                     break;
@@ -37,15 +37,21 @@ public class Controller : Observer
     {
         if(!isLose)
         SpawnerModel.SpawnNewBullet();
+        else
+        {
+            isLose = !isLose;
+            TargetModel.restart();
+            View.SetNewScore(TargetModel.score);
+        }
     }
     private void _lose()
     {
         isLose = true;
         TargetModel.lose();
-        SpawnerModel.lose();
     }
     private void _hit()
     {
+        TargetModel.PlusScore(1);
         View.SetNewScore(TargetModel.score);
     }
 }
