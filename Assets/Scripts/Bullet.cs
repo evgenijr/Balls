@@ -7,28 +7,34 @@ public class Bullet : MonoBehaviour
     private Rigidbody _rb;
     private Collider _col;
 
-    public bool isPlatformHited;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody>();
         _col = GetComponent<Collider>();
+        //_rb.AddForce(Vector3.up * Speed * Time.deltaTime, ForceMode.Impulse);
     }
-
+    private void Start()
+    {
+        
+        _rb.velocity = Vector3.up * Speed * Time.deltaTime;
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Platform"))
         {
-            Subject.Notify(Notifications.PLATFORM_HITED);
-            isPlatformHited = true;
+            if(other.TryGetComponent(out Platforms plat))
+            {
+                plat.PlusScore(1);
+                Subject.Notify(Notifications.PLATFORM_HITED);
+                Destroy(gameObject);
+            }
         }
-        Destroy(gameObject);
-    }
-    private void LateUpdate()
-    {
-        isPlatformHited = false;
     }
     private void Update()
     {
-        _rb.MovePosition(transform.position + Vector3.up * Speed * Time.deltaTime);
+        //_rb.AddForce(Vector3.up * Speed * Time.deltaTime, ForceMode.Impulse);
+        Vector3 tempVect = new Vector3(0, 1, 0);
+        tempVect = tempVect.normalized * Speed * Time.deltaTime;
+        _rb.MovePosition(transform.position + tempVect);
     }
 }

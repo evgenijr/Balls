@@ -3,19 +3,21 @@ using UnityEngine.UI;
 
 public class Controller : Observer
 {
-    public SpawnerModel spawner;
-    public PlayerModel player;
-    public VIew view;
+    public Platforms PlatformModel;
+    public SpawnerModel SpawnerModel;
+    public VIew View;
+    
+    //private PlayerModel PlayerModel;
 
     public Controller()
     {
-        spawner = new SpawnerModel();
-        player = new PlayerModel();
-        view = new VIew();
+        SpawnerModel = new SpawnerModel();
+        //PlayerModel = new PlayerModel();
+        Subject.AddObserver(this);
     }
     public void Update()
     {
-        if (view.shootClicked)
+        if (View.shootClicked)
         {
             _shootClicked();
         }
@@ -32,13 +34,12 @@ public class Controller : Observer
 
         }
     }
-
     private void _shootClicked()
     {
-        spawner.SpawnNewBullet();
+        SpawnerModel.SpawnNewBullet();
     }
     private void _hit()
     {
-        view.SetNewScore(player.Hit());
+        View.SetNewScore(PlatformModel.score);
     }
 }

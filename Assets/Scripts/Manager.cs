@@ -1,31 +1,24 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-
 public class Manager : MonoBehaviour
 {
-    [SerializeField]private GameObject spawner;
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField]private Text ScoreText;
-    public Controller controller = new Controller();
+    [SerializeField] private VIew View;
+    [SerializeField] private GameObject Spawner;
+    [SerializeField] private Text ScoreText;
+    [SerializeField] private Platforms Platform;
 
-    Manager()
-    {  
-        controller = new Controller();
-        controller.view.ScoreText = ScoreText;
-        controller.spawner.spawner = spawner.GetComponent<Spawner>();
-        controller.spawner.spawner.BulletPrefab = bulletPrefab;
-    }
+    private Controller controller;
+
     private void Awake()
     {
-        
+        controller = new Controller();
+        controller.View = View;
+        controller.PlatformModel = Platform;
+        controller.SpawnerModel.spawner = Spawner.GetComponent<Spawner>();
     }
     private void Update()
     {
         controller.Update();
-    }
-    private void LateUpdate()
-    {
-        controller.view.LateUpdate();
     }
 }

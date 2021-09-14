@@ -1,21 +1,12 @@
 using UnityEngine.UI;
-using System;
-[Serializable]
-public class VIew
+using UnityEngine;
+
+public class VIew : MonoBehaviour
 {
-    public Text ScoreText;
+    [SerializeField]private Text ScoreText;
     public bool shootClicked { get; private set; }
     public bool pauseClicked { get; private set; }
 
-    public VIew()
-    {
-        //ScoreText.text = "0";
-    }
-    public void LateUpdate()
-    {
-        shootClicked = false;
-        pauseClicked = false;
-    }
     public void ShootClick()
     {
         _shootClick();
@@ -28,7 +19,12 @@ public class VIew
     {
         ScoreText.text = val.ToString();
     }
-
+    //-------------
+    private void LateUpdate()
+    {
+        shootClicked = false;
+        pauseClicked = false;
+    }
 
 
     private void _shootClick()
