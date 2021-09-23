@@ -6,18 +6,18 @@ public class Manager : MonoBehaviour
     [SerializeField] private View View;
     [SerializeField] private GameObject Spawner;
     [SerializeField] private Text ScoreText;
-    [SerializeField] private TargetModel Platform;
+    [SerializeField] private BallModel Ball;
 
-    private Controller controller;
+    private Controller GameController;
     private void Awake()
     {
-        controller = new Controller();
-        controller.View = View;
-        controller.TargetModel = Platform;
-        controller.SpawnerModel.spawner = Spawner.GetComponent<Spawner>();
+        GameController = new Controller();
+        GameController.View = View;
+        GameController.TargetModel = Ball;
+        GameController.SpawnerModel.spawner = Spawner.GetComponent<Spawner>();
     }
     private void Update()
     {
-        controller.Update();
+        GameController.Update();
     }
 }

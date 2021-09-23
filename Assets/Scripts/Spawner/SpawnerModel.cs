@@ -6,10 +6,6 @@ public class SpawnerModel
 
     public void SpawnNewBullet()
     {
-        _spawnNewBullet();
-    }
-    private void _spawnNewBullet()
-    {
         spawner.Spawn();
     }
 }

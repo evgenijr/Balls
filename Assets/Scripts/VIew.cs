@@ -4,8 +4,8 @@ using UnityEngine;
 public class View : MonoBehaviour
 {
     [SerializeField]private Text ScoreText;
-    public bool shootClicked { get; private set; }
-    public bool pauseClicked { get; private set; }
+    public bool isShootClicked { get; private set; }
+    public bool isPauseClicked { get; private set; }
 
     public void ShootClick()
     {
@@ -22,15 +22,15 @@ public class View : MonoBehaviour
     //-----------------
     private void LateUpdate()
     {
-        shootClicked = false;
-        pauseClicked = false;
+        isShootClicked = false;
+        isPauseClicked = false;
     }
     private void _shootClick()
     {
-        shootClicked = true;
+        isShootClicked = true;
     }
     private void _pauseClick()
     {
-        pauseClicked = true;
+        isPauseClicked = true;
     }
 }

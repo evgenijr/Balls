@@ -2,32 +2,32 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
-public class TargetModel : MonoBehaviour
+public class BallModel : MonoBehaviour
 {
-    public int score { get; private set; }
+    public int Score { get; private set; }
 
-    private TargetRotate _move;
+    private Rotator BallRotator;
 
     private void Awake()
     {
-        if (TryGetComponent(out TargetRotate move))
-            _move = move;
+        if (TryGetComponent(out Rotator rotator))
+            BallRotator = rotator;
         else return;
         
-        score = 0;
+        Score = 0;
     }
     public void PlusScore(int val)
     {
         _plusScore(val);
     }
-    public void restart()
+    public void Restart()
     {
         _restart();
     }
-    public void lose()
+    public void Lose()
     {
-        _move.enabled = false;
-        score = 0;
+        BallRotator.enabled = false;
+        Score = 0;
     }
 
     private void _restart()
@@ -37,10 +37,10 @@ public class TargetModel : MonoBehaviour
         {
             Destroy(item.gameObject);
         }
-        _move.enabled = true;
+        BallRotator.enabled = true;
     }
     private void _plusScore(int val)
     {
-        score += val;
+        Score += val;
     }
 }

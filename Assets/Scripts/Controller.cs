@@ -1,6 +1,6 @@
 public class Controller : Observer
 {
-    public TargetModel TargetModel;
+    public BallModel TargetModel;
     public SpawnerModel SpawnerModel;
     public View View;
 
@@ -12,9 +12,9 @@ public class Controller : Observer
     }
     public void Update()
     {
-        if (View.shootClicked)
+        if (View.isShootClicked)
         {
-            _shootClicked();
+            ShootClicked();
         }
     }
     public override void OnNotify(Notifications notification)
@@ -33,25 +33,25 @@ public class Controller : Observer
                 }
         }
     }
-    private void _shootClicked()
+    private void ShootClicked()
     {
         if(!isLose)
         SpawnerModel.SpawnNewBullet();
         else
         {
             isLose = !isLose;
-            TargetModel.restart();
-            View.SetNewScore(TargetModel.score);
+            TargetModel.Restart();
+            View.SetNewScore(TargetModel.Score);
         }
     }
     private void _lose()
     {
         isLose = true;
-        TargetModel.lose();
+        TargetModel.Lose();
     }
     private void _hit()
     {
         TargetModel.PlusScore(1);
-        View.SetNewScore(TargetModel.score);
+        View.SetNewScore(TargetModel.Score);
     }
 }
