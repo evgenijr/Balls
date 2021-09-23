@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3352e54c73a190b4d9529aaad83c689d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BulletPrefab: {fileID: 6846937554300319753, guid: 57a737e6179da924f9f26ec37648b0ed, type: 3}
+  PrefabToSpawn: {fileID: 6846937554300319753, guid: 57a737e6179da924f9f26ec37648b0ed, type: 3}
 --- !u!4 &93381076
 Transform:
   m_ObjectHideFlags: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   View: {fileID: 1586688421}
   Spawner: {fileID: 93381074}
   ScoreText: {fileID: 472702165}
-  Platform: {fileID: 1396918964}
+  Ball: {fileID: 1396918964}
 --- !u!4 &971918078
 Transform:
   m_ObjectHideFlags: 0
@@ -682,7 +682,7 @@ GameObject:
   - component: {fileID: 1396918965}
   - component: {fileID: 1396918964}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Ball
   m_TagString: Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -789,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b7e75024063c244bd81ad3261d6e78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.7
+  Speed: 2
 --- !u!1 &1586688416
 GameObject:
   m_ObjectHideFlags: 0
